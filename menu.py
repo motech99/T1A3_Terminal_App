@@ -9,7 +9,7 @@ title = figlet_format(game_title)
 
 console.print(title, style="blue_violet")
 console.print(
-    "Hello! Thank you for checking out my game of Blackjack! Hope you Enjoy!")
+    "Hello! Thank you for checking out my game of Blackjack! Hope you Enjoy! \n")
 
 
 # a function to raise errors if name is empty string or is a number
@@ -18,7 +18,7 @@ def validate_name(name):
         raise ValueError("Name cannot be empty")
     if not name.isalpha():
         raise ValueError(
-            f"{name}?? really? Name can only contain alphabetic characters"
+            f"{name}?? Name can only contain alphabetic characters"
         )
 
 
@@ -26,9 +26,9 @@ def validate_name(name):
 # name (string)
 while True:
     try:
-        name = input("Enter your name: ")
+        name = input("Enter your name to play: ")
         validate_name(name)
-        print("Welcome! ", name)
+        print("Welcome!", name)
         break
     except ValueError as e:
         print("Error:", e)
