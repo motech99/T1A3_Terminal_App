@@ -71,7 +71,32 @@ The player's hand, including the values of the cards and the total score, is dis
 
 ## Implementation Plan
 
-[Link to Trello Board](https://trello.com/b/DHZMC0Ul/python-blackjack)
+#### [Link to Trello Board](https://trello.com/b/DHZMC0Ul/python-blackjack)
+
+![1](./docs/trello-board-1.png)
+
+I have opted to use Trello because I have used it before on previous projects, and find it user-friendly.
+
+All features are listed by priority with estimated due dates. The Menu feature is first, and the Game Outcome Determination feature is last.
+
+Each feature has been allocated a one-day time frame for completion, which is subject to change if any feature takes longer to develop. You can view the complete plan on the Trello Board linked above or review the progression screenshots below.
+
+### Features priority in order
+
+![1](./docs/Menu-Feature-1.png)
+![2](./docs/Menu-Feature-2.png)
+![3](./docs/player-hand-Management-Feature-1.png)
+![4](./docs/player-hand-Management-Feature-2.png)
+![5](./docs/Dealer-Hand-Management-Feature-1.png)
+![6](./docs/Dealer-Hand-Management-Feature-2.png)
+![7](./docs/Game-Outcome-Determination-Feature-1.png)
+![8](./docs/Game-Outcome-Determination-Feature-2.png)
+
+### Progression as of 07/05/2024
+
+![1](./docs/Progression-%202024-05-07.png)
+![2](./docs/readme-md-progression-1.png)
+![3](./docs/readme-md-progression-2.png)
 
 ## Help Documentation
 
@@ -92,4 +117,5 @@ placeholder
 
 ## References
 
-placeholder
+Bicycle Cards ***(n.d)*** LEARN TO PLAY Blackjack, Bicycle Cards
+Available at: [https://bicyclecards.com/how-to-play/blackjack/](https://bicyclecards.com/how-to-play/blackjack/)
