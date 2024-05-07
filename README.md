@@ -71,7 +71,7 @@ The player's hand, including the values of the cards and the total score, is dis
 
 ## Implementation Plan
 
-#### [Link to Trello Board](https://trello.com/b/DHZMC0Ul/python-blackjack)
+### [Link to Trello Board](https://trello.com/b/DHZMC0Ul/python-blackjack)
 
 ![1](./docs/trello-board-1.png)
 
