@@ -12,11 +12,15 @@ GitHub Repository Link: [Click Here!](https://github.com/motech99/T1A3_Terminal_
 
 ## Descripton
 
-placeholder
+Welcome to my terminal application, Blackjack Python Edition, created as part of my final assessment for Term 1 at Coder Academy. Blackjack is a card game in which the objective is to get cards that add up to 21 without going over. You will compete against the dealer. The winner is whoever gets closest to 21 without exceeding it. However, if you go over 21, you lose the round. The game requires a combination of luck and strategy as you decide whether to take another card or stick with what you have.
+
+### Code Style Guide
+
+This code follows PEP 8 style convention which can be found here: [PEP 8 – Style Guide for Python Code](https://peps.python.org/pep-0008/)
 
 ## Features
 
-### Menu Feature:
+### Menu Feature
 
 - Upon starting the application, a small menu titled "Blackjack" will greet the player.
 
@@ -26,7 +30,7 @@ placeholder
 
 - It includes simple error handling to ensure the player enters their name correctly.
 
-### Player Hand Management Feature:
+### Player Hand Management Feature
 
 - When the game starts, this feature deals two cards to the player from a standard 52-card deck.
 
@@ -39,7 +43,7 @@ The player's hand, including the values of the cards and the total score, is dis
 
 - Variables are scoped to manage the player's hand separately from other game parts.
 
-### Dealer Hand Management Feature:
+### Dealer Hand Management Feature
 
 - After the player finishes their turn, this feature deals the dealer's cards.
 
@@ -51,7 +55,7 @@ The player's hand, including the values of the cards and the total score, is dis
 
 - Variables are scoped to ensure the dealer's hand is managed separately from the player's hand.
 
-### Game Outcome Determination Feature:
+### Game Outcome Determination Feature
 
 - Once both the player and dealer have completed their turns, this feature determines the outcome of the game.
 
@@ -67,7 +71,7 @@ The player's hand, including the values of the cards and the total score, is dis
 
 ## Implementation Plan
 
-placeholder
+[Link to Trello Board](https://trello.com/b/DHZMC0Ul/python-blackjack)
 
 ## Help Documentation
 
