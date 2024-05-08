@@ -6,6 +6,8 @@ from menu import *
 def space():
     print("\n")
 
+# Initialising a deck and set values for face cards and Aces
+
 
 def starter_deck():
     deck = Deck()
@@ -16,18 +18,26 @@ def starter_deck():
             card.value = 10
     return deck
 
+ # Draw two cards from the deck for the player's starting hand
+
 
 def draw_hand(deck):
     return [deck.draw_card(), deck.draw_card()]
+
+ # Print each card's image representation for the player's hand
 
 
 def print_hand(hand):
     for card in hand:
         console.print(card.img, style="dodger_blue2")
 
+# Calculate the total value of the player's hand
+
 
 def calculate_total(hand):
     return sum(card.value for card in hand)
+
+# Allow the player to take their turn in the game
 
 
 def player_turn(deck, player_hand):
@@ -56,14 +66,19 @@ def player_turn(deck, player_hand):
             print("You chose to stand.")
             break
         else:
+            # To make sure the input is valid and not something else
             print("Invalid input. Please enter 'hit' or 'stand'.")
 
 
 def main():
+    # Initialise the deck
     deck = starter_deck()
+    # Draw the player's starting hand
     player_hand = draw_hand(deck)
+    # Allow the player to take their turn
     player_turn(deck, player_hand)
 
 
+# Start the game
 if __name__ == "__main__":
     main()
