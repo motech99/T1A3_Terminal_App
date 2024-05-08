@@ -6,8 +6,6 @@ from menu import *
 def space():
     print("\n")
 
-player_score = 0
-
 deck = Deck()
 for card in deck:
     if card.rank == 'Ace':
@@ -17,15 +15,20 @@ for card in deck:
 
 def draw_card():
     deck.shuffle()
-    player_card = deck.draw_card()
-    console.print(player_card.img, style="dodger_blue2")
-    print(player_card.value)
+    card = deck.draw_card()
+    console.print(card.img, style="dodger_blue2")
+    return card
 
 
+player_hand = []
+
+total = 0
+for card in player_hand:
+    total += card.value
+print(total)
+    
 
 
-draw_card()
-draw_card()
 
 
 
