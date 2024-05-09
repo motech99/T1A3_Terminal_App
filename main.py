@@ -11,6 +11,7 @@ def space():
 
 def starter_deck():
     deck = Deck()
+    deck.shuffle()
     for card in deck:
         if card.rank == "Ace":
             card.value = 11
@@ -35,8 +36,14 @@ def print_hand(hand):
 
 
 def calculate_total(hand):
-    return sum(card.value for card in hand)
-
+    total = sum(card.value for card in hand)
+    if total >= 20:
+        for card in hand:
+            if card.rank == "Ace" and card.value == 11:
+                card.value = 1
+                total -= 10
+                break
+    return total
 # Allow the player to take their turn in the game
 
 
@@ -47,20 +54,21 @@ def player_turn(deck, player_hand):
         print(f"Your total score is: {total}")
         space()
 
+
         action = input("Hit or Stand: ").lower()
-        if action == "hit":
+        if action == "hit" or action == 'h':
             new_card = deck.draw_card()
             player_hand.append(new_card)
             total += new_card.value
-            print(f"Your total score is now: {total}")
             space()
 
             if total > 21:
                 print_hand(player_hand)
-                print("Bust! You went over 21. Dealer wins!")
+                print(f"Bust! {total} You went over 21. Dealer wins!")
                 break
             elif total == 21:
-                print("Blackjack! You win")
+                print_hand(player_hand)
+                print("BLACKJACK! You win")
                 break
         elif action == "stand":
             print("You chose to stand.")

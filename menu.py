@@ -18,7 +18,7 @@ def validate_name(name):
         raise ValueError("Name cannot be empty")
     if not name.isalpha():
         raise ValueError(
-            f"Name can only contain alphabetic characters"
+            "Name can only contain alphabetic characters"
         )
 
 
@@ -26,7 +26,7 @@ def validate_name(name):
 # name (string)
 while True:
     try:
-        name = input("Enter your name to play: ")
+        name = input("Enter your name to play: ").lower()
         validate_name(name)
         console.print("Welcome!", name, style='green')
         break
