@@ -1,9 +1,10 @@
-# from menu import *
-from playingcards import Deck, Card
+from playingcards import Deck
 from menu import *
 
+"""playingcards: Creating, shuffling, and displaying decks made easier with this Python Playing Card Module."""
 
-def space():
+
+def print_blank_line():
     print("\n")
 
 
@@ -39,7 +40,7 @@ def print_player_hand(hand):
 
 def print_dealer_hand(hand):
     for card in hand:
-        console.print(card.img, style="dark_red")
+        console.print(card.img, style="purple4")
 
 
 # Calculate the total value of the player's hand
@@ -64,7 +65,7 @@ def turn(deck, player_hand, dealer_hand):
         print_dealer_hand(dealer_hand)
         dealer_total = calculate_total(dealer_hand)
         print(f"Dealer's total score is: {dealer_total}")
-        space()
+        print_blank_line()
 
         # Player's turn
         action = input("hit or stand: ").lower()
@@ -73,7 +74,7 @@ def turn(deck, player_hand, dealer_hand):
             new_card = deck.draw_card()
             player_hand.append(new_card)
             total += new_card.value
-            space()
+            print_blank_line()
 
             if total > 21:
                 print_player_hand(player_hand)
@@ -81,7 +82,7 @@ def turn(deck, player_hand, dealer_hand):
                 return
             elif total == 21:
                 print_player_hand(player_hand)
-                print("BLACKJACK! You win")
+                console.print("BLACKJACK! You win", style="green3")
                 return
 
         elif action == "stand":
@@ -94,7 +95,7 @@ def turn(deck, player_hand, dealer_hand):
                 print_dealer_hand(dealer_hand)
                 dealer_total += new_card.value
                 print(f"Dealer's total score is: {dealer_total}")
-                space()
+                print_blank_line()
 
                 if dealer_total > 21:
                     print(f"Bust! {dealer_total} Dealer went over 21. You win!")
@@ -103,16 +104,19 @@ def turn(deck, player_hand, dealer_hand):
                     print_dealer_hand(dealer_hand)
                     print("BLACKJACK! Dealer wins")
                     return
-                
+
             # Check if the game has reached a conclusion
             if dealer_total >= 17:
                 # Compare scores and determine the winner
                 if total > dealer_total and total <= 21:
-                    print_dealer_hand(player_hand)
+                    print_player_hand(player_hand)
                     print("You win!")
                 elif dealer_total > total and dealer_total <= 21:
                     print_dealer_hand(dealer_hand)
-                    print(f"Your score: {total} dealer's score:{dealer_total}")
+                    console.print(
+                        f"[dodger_blue1 bold]Your score: [underline]{total}[/][/] [slate_blue3 bold] dealer's score: [underline]{dealer_total}[/][/]"
+                    )
+                    print_blank_line()
                     print("Dealer wins!")
                 else:
                     print("It's a tie!")
@@ -120,7 +124,8 @@ def turn(deck, player_hand, dealer_hand):
 
         else:
             # To make sure the input is valid and not something else
-            print("Invalid input. Please enter 'hit' or 'stand'.")
+            console.print("Invalid input. Please enter 'hit' or 'stand'.", style="red1")
+
 
 def main():
     while True:
@@ -130,11 +135,14 @@ def main():
         player_hand = draw_player_hand()
         # Draw the dealer's starting hand
         dealer_hand = draw_dealer_hand()
-        # Allow the player to take their turn
+        # Allow the player/dealerto take their turn
         turn(deck, player_hand, dealer_hand)
         # Ask the player if they want to play again
         play_again = input("Do you want to play again? (yes/no): ").lower()
         if play_again != "yes":
+            end_title = "Thanks for playing!"
+            game_end_title = figlet_format(end_title)
+            console.print(game_end_title, style="dark_magenta")
             break
 
 

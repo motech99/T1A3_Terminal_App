@@ -28,7 +28,7 @@ while True:
     try:
         name = input("Enter your name to play: ").lower()
         validate_name(name)
-        console.print("Welcome!", name, style='green')
+        console.print("Welcome!", name, style='italic green')
         break
     except ValueError as e:
         console.print("Error:", e, style='red')
