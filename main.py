@@ -52,24 +52,23 @@ def calculate_total(hand):
     return total
 
 
-# Allow the player to take their turn in the game
-def player_turn(deck, player_hand, dealer_hand):
+# Turn Mechanic for player and dealer
+def turn(deck, player_hand, dealer_hand):
     while True:
         print_player_hand(player_hand)
-        deck.shuffle()
         total = calculate_total(player_hand)
         print(f"Your total score is: {total}")
+
         print_dealer_hand(dealer_hand)
-        deck.shuffle()
         dealer_total = calculate_total(dealer_hand)
         print(f"Dealer's total score is: {dealer_total}")
         space()
 
-        action = input("Hit or Stand: ").lower()
-        if action == "hit" or action == 'h':
+        action = input("hit or stand: ").lower()
+        if action == "hit":
+
             new_card = deck.draw_card()
             player_hand.append(new_card)
-            deck.shuffle()
             total += new_card.value
             space()
 
@@ -87,7 +86,8 @@ def player_turn(deck, player_hand, dealer_hand):
                 new_card = deck.draw_card()
                 dealer_hand.append(new_card)
                 print_dealer_hand(dealer_hand)
-                deck.shuffle()
+                dealer_total += new_card.value
+                print(f"Dealer's total score is: {dealer_total}")
             break
         else:
             # To make sure the input is valid and not something else
@@ -102,7 +102,7 @@ def main():
     # Draw the dealer's starting hand
     dealer_hand = draw_dealer_hand()
     # Allow the player to take their turn
-    player_turn(deck, player_hand, dealer_hand)
+    turn(deck, player_hand, dealer_hand)
 
 
 # Start the game
