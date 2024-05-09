@@ -100,9 +100,11 @@ Each feature has been allocated a one-day time frame for completion, which is su
 
 ### Progression as of 08/05/2024
 
-![1](./docs/readme-md-progression-3.png.png)
+![1](./docs/readme-md-progression-3.png)
 
 ### Progression as of 09/05/2024
+
+![1](./docs/readme-md-progression-4.png)
 
 
 ## Help Documentation
