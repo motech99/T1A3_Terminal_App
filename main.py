@@ -21,26 +21,15 @@ def starter_deck():
 
 
 # Draw two cards from the deck for the player's starting hand
-def draw_player_hand():
-    deck = starter_deck()
-    return [deck.draw_card(), deck.draw_card()]
-
-
-# Draw two cards from the deck for the Dealers's starting hand
-def draw_dealer_hand():
+def draw_cards():
     deck = starter_deck()
     return [deck.draw_card(), deck.draw_card()]
 
 
 # Print each card's image representation for the player's hand
-def print_player_hand(hand):
+def print_hand(hand, color):
     for card in hand:
-        console.print(card.img, style="dodger_blue2")
-
-
-def print_dealer_hand(hand):
-    for card in hand:
-        console.print(card.img, style="purple4")
+        console.print(card.img, style=color)
 
 
 # Calculate the total value of the player's hand
@@ -54,15 +43,19 @@ def calculate_total(hand):
                 break
     return total
 
+wins = 0
+losses = 0
+ties = 0
 
 # Turn Mechanic for player and dealer
 def turn(deck, player_hand, dealer_hand):
+    global wins, losses, ties  
     while True:
-        print_player_hand(player_hand)
+        print_hand(player_hand, "dodger_blue2")
         total = calculate_total(player_hand)
         print(f"Your total score is: {total}")
 
-        print_dealer_hand(dealer_hand)
+        print_hand(dealer_hand, "purple4")
         dealer_total = calculate_total(dealer_hand)
         print(f"Dealer's total score is: {dealer_total}")
         print_blank_line()
@@ -77,12 +70,14 @@ def turn(deck, player_hand, dealer_hand):
             print_blank_line()
 
             if total > 21:
-                print_player_hand(player_hand)
+                print_hand(player_hand, "dodger_blue2")
                 print(f"Bust! {total} You went over 21. Dealer wins!")
+                losses += 1
                 return
             elif total == 21:
-                print_player_hand(player_hand)
+                print_hand(player_hand, "dodger_blue2")
                 console.print("BLACKJACK! You win", style="green3")
+                wins += 1
                 return
 
         elif action == "stand":
@@ -92,7 +87,7 @@ def turn(deck, player_hand, dealer_hand):
             while calculate_total(dealer_hand) < 17:
                 new_card = deck.draw_card()
                 dealer_hand.append(new_card)
-                print_dealer_hand(dealer_hand)
+                print_hand(dealer_hand, "purple4")
                 dealer_total += new_card.value
                 print(f"Dealer's total score is: {dealer_total}")
                 print_blank_line()
@@ -100,9 +95,10 @@ def turn(deck, player_hand, dealer_hand):
                 if dealer_total > 21:
                     print(
                         f"Bust! {dealer_total} Dealer went over 21. You win!")
+                    wins += 1 
                     return
                 elif dealer_total == 21:
-                    print_dealer_hand(dealer_hand)
+                    print_hand(dealer_hand, "purple4")
                     print("BLACKJACK! Dealer wins")
                     return
 
@@ -110,18 +106,21 @@ def turn(deck, player_hand, dealer_hand):
             if dealer_total >= 17:
                 # Compare scores and determine the winner
                 if total > dealer_total and total <= 21:
-                    print_player_hand(player_hand)
+                    print_hand(player_hand, "dodger_blue2")
                     print("You win!")
+                    wins += 1 
                 elif dealer_total > total and dealer_total <= 21:
-                    print_dealer_hand(dealer_hand)
+                    print_hand(dealer_hand, "purple4")
                     console.print(
                         f"[dodger_blue1 bold]Your score: [underline]{
                             total}[/][/] [slate_blue3 bold] dealer's score: [underline]{dealer_total}[/][/]"
                     )
                     print_blank_line()
                     print("Dealer wins!")
+                    losses += 1
                 else:
                     print("It's a tie!")
+                    ties += 1
                 return
 
         else:
@@ -144,14 +143,15 @@ def ask_play_again():
 
 
 def main():
+    global wins, losses, ties
     while True:
         try:
             # Initialise the deck
             deck = starter_deck()
             # Draw the player's starting hand
-            player_hand = draw_player_hand()
+            player_hand = draw_cards()
             # Draw the dealer's starting hand
-            dealer_hand = draw_dealer_hand()
+            dealer_hand = draw_cards()
             # Allow the player/dealerto take their turn
             turn(deck, player_hand, dealer_hand)
 
@@ -160,6 +160,10 @@ def main():
                 end_title = "Thanks for playing!"
                 game_end_title = figlet_format(end_title)
                 console.print(game_end_title, style="dark_magenta")
+                console.print(f"Wins: {wins}, Losses: {losses}, Ties: {ties}")
+                wins = 0
+                losses = 0
+                ties = 0
                 break
 
         except ValueError as ve:
