@@ -68,7 +68,7 @@ def turn(deck, player_hand, dealer_hand):
         print_blank_line()
 
         # Player's turn
-        action = input("hit or stand: ").lower()
+        action = input("Hit or stand: ").strip().lower()
         if action == "hit":
 
             new_card = deck.draw_card()
@@ -98,7 +98,8 @@ def turn(deck, player_hand, dealer_hand):
                 print_blank_line()
 
                 if dealer_total > 21:
-                    print(f"Bust! {dealer_total} Dealer went over 21. You win!")
+                    print(
+                        f"Bust! {dealer_total} Dealer went over 21. You win!")
                     return
                 elif dealer_total == 21:
                     print_dealer_hand(dealer_hand)
@@ -114,7 +115,8 @@ def turn(deck, player_hand, dealer_hand):
                 elif dealer_total > total and dealer_total <= 21:
                     print_dealer_hand(dealer_hand)
                     console.print(
-                        f"[dodger_blue1 bold]Your score: [underline]{total}[/][/] [slate_blue3 bold] dealer's score: [underline]{dealer_total}[/][/]"
+                        f"[dodger_blue1 bold]Your score: [underline]{
+                            total}[/][/] [slate_blue3 bold] dealer's score: [underline]{dealer_total}[/][/]"
                     )
                     print_blank_line()
                     print("Dealer wins!")
@@ -124,26 +126,44 @@ def turn(deck, player_hand, dealer_hand):
 
         else:
             # To make sure the input is valid and not something else
-            console.print("Invalid input. Please enter 'hit' or 'stand'.", style="red1")
+            console.print(
+                "Invalid input. Please enter 'hit' or 'stand'.",
+                style="red1")
+
+
+def ask_play_again():
+    while True:
+        play_again = input(
+            "Do you want to play again? (yes/no): ").strip().lower()
+        if play_again in ["yes", "no"]:
+            return play_again
+        else:
+            console.print(
+                "Error: Invalid input. Please enter 'yes' or 'no'.",
+                style="red")
 
 
 def main():
     while True:
-        # Initialise the deck
-        deck = starter_deck()
-        # Draw the player's starting hand
-        player_hand = draw_player_hand()
-        # Draw the dealer's starting hand
-        dealer_hand = draw_dealer_hand()
-        # Allow the player/dealerto take their turn
-        turn(deck, player_hand, dealer_hand)
-        # Ask the player if they want to play again
-        play_again = input("Do you want to play again? (yes/no): ").lower()
-        if play_again != "yes":
-            end_title = "Thanks for playing!"
-            game_end_title = figlet_format(end_title)
-            console.print(game_end_title, style="dark_magenta")
-            break
+        try:
+            # Initialise the deck
+            deck = starter_deck()
+            # Draw the player's starting hand
+            player_hand = draw_player_hand()
+            # Draw the dealer's starting hand
+            dealer_hand = draw_dealer_hand()
+            # Allow the player/dealerto take their turn
+            turn(deck, player_hand, dealer_hand)
+
+            play_again = ask_play_again()
+            if play_again == "no":
+                end_title = "Thanks for playing!"
+                game_end_title = figlet_format(end_title)
+                console.print(game_end_title, style="dark_magenta")
+                break
+
+        except ValueError as ve:
+            console.print("Error:", ve, style="red")
 
 
 # Start the game
