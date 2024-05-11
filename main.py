@@ -4,6 +4,21 @@ from menu import *
 """playingcards: Creating, shuffling, and displaying decks made easier with this Python Playing Card Module."""
 
 
+class Score:
+    def __init__(self):
+        self.wins = 0
+        self.losses = 0
+        self. ties = 0
+
+    def scoreboard(self):
+        console.print(
+            f"Wins: {
+                self.wins} Losses: {
+                self.losses} Ties: {
+                self.ties}",
+            style="dark_violet bold")
+
+
 def print_blank_line():
     print("\n")
 
@@ -43,13 +58,9 @@ def calculate_total(hand):
                 break
     return total
 
-wins = 0
-losses = 0
-ties = 0
 
 # Turn Mechanic for player and dealer
-def turn(deck, player_hand, dealer_hand):
-    global wins, losses, ties  
+def turn(deck, player_hand, dealer_hand, score):
     while True:
         print_hand(player_hand, "dodger_blue2")
         total = calculate_total(player_hand)
@@ -72,12 +83,12 @@ def turn(deck, player_hand, dealer_hand):
             if total > 21:
                 print_hand(player_hand, "dodger_blue2")
                 print(f"Bust! {total} You went over 21. Dealer wins!")
-                losses += 1
+                score.losses += 1
                 return
             elif total == 21:
                 print_hand(player_hand, "dodger_blue2")
                 console.print("BLACKJACK! You win", style="green3")
-                wins += 1
+                score.wins += 1
                 return
 
         elif action == "stand":
@@ -95,7 +106,7 @@ def turn(deck, player_hand, dealer_hand):
                 if dealer_total > 21:
                     print(
                         f"Bust! {dealer_total} Dealer went over 21. You win!")
-                    wins += 1 
+                    score.wins += 1
                     return
                 elif dealer_total == 21:
                     print_hand(dealer_hand, "purple4")
@@ -108,7 +119,7 @@ def turn(deck, player_hand, dealer_hand):
                 if total > dealer_total and total <= 21:
                     print_hand(player_hand, "dodger_blue2")
                     print("You win!")
-                    wins += 1 
+                    score.wins += 1
                 elif dealer_total > total and dealer_total <= 21:
                     print_hand(dealer_hand, "purple4")
                     console.print(
@@ -117,10 +128,10 @@ def turn(deck, player_hand, dealer_hand):
                     )
                     print_blank_line()
                     print("Dealer wins!")
-                    losses += 1
+                    score.losses += 1
                 else:
                     print("It's a tie!")
-                    ties += 1
+                    score.ties += 1
                 return
 
         else:
@@ -143,9 +154,11 @@ def ask_play_again():
 
 
 def main():
-    global wins, losses, ties
+    score = Score()
     while True:
         try:
+            # Initialise the scoreboard
+            score.scoreboard()
             # Initialise the deck
             deck = starter_deck()
             # Draw the player's starting hand
@@ -153,21 +166,20 @@ def main():
             # Draw the dealer's starting hand
             dealer_hand = draw_cards()
             # Allow the player/dealerto take their turn
-            turn(deck, player_hand, dealer_hand)
+            turn(deck, player_hand, dealer_hand, score)
 
             play_again = ask_play_again()
             if play_again == "no":
                 end_title = "Thanks for playing!"
                 game_end_title = figlet_format(end_title)
                 console.print(game_end_title, style="dark_magenta")
-                console.print(f"Wins: {wins}, Losses: {losses}, Ties: {ties}")
-                wins = 0
-                losses = 0
-                ties = 0
+                score.scoreboard()
                 break
 
         except ValueError as ve:
             console.print("Error:", ve, style="red")
+        except IOError as ioe:
+            console.print("IOError:", ioe, style="red")
 
 
 # Start the game

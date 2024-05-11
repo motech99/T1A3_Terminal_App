@@ -14,11 +14,11 @@ console.print(
 
 # a function to raise errors if name is empty string or is a number
 def validate_name(name):
-    if not name:
+    if not name.strip():
         raise ValueError("Name cannot be empty")
-    if not name.isalpha():
+    if not all(char.isalpha() or char in (' ', '-') for char in name.strip()):
         raise ValueError(
-            "Name can only contain alphabetic characters"
+            "Name can only contain alphabetic characters, spaces, or hyphens"
         )
 
 
@@ -34,3 +34,4 @@ while True:
         console.print("Error:", e, style='red')
     except TypeError as e:
         print("Error:", e,)
+
