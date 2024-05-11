@@ -9,7 +9,7 @@ title = figlet_format(game_title)
 
 console.print(title, style="blue_violet")
 console.print(
-    "Hello! Thank you for checking out my game of Blackjack! Hope you Enjoy! \n")
+    "Hello! Thank you for checking out my game of Blackjack! Hope you Enjoy! \n", style= 'cornflower_blue')
 
 
 # a function to raise errors if name is empty string or is a number
