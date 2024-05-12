@@ -157,7 +157,9 @@ chmod +x blackjack_app.sh
 ./blackjack_app.sh --install
 ```
 
-This script creates a virtual environment, installs dependencies, and checks for python and python3 and pip if they are both installed.
+This script creates a virtual environment, installs dependencies, and checks for python and python3 and pip if they are both installed and launches the game.
+
+In order to improve your gaming experience, please resize the terminal screen to a larger size.  enjoy the game!
 
 ### Dependencies Required
 
