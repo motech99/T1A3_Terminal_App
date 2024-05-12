@@ -7,15 +7,20 @@ from menu import *
 
 class Score:
     """A class to keep track of game scores."""
-        
+
     def __init__(self):
         self.wins = 0
         self.losses = 0
         self. ties = 0
-    
+
     def scoreboard(self):
         """Prints the current score."""
-        console.print(f"Wins: {self.wins} Losses: {self.losses} Ties: {self.ties}", style="dark_violet bold")
+        console.print(
+            f"Wins: {
+                self.wins} Losses: {
+                self.losses} Ties: {
+                self.ties}",
+            style="dark_violet bold")
 
 
 def print_blank_line():
@@ -57,9 +62,11 @@ def calculate_total(hand):
                 break
     return total
 
+
 def error_message(action):
     console.print(
-        f"Invalid input: [dark_orange bold]{action}[/]. Please enter 'hit' or 'stand'.",
+        f"Invalid input: [dark_orange bold]{
+            action}[/]. Please enter 'hit' or 'stand'.",
         style="red1")
 
 
@@ -76,10 +83,10 @@ def turn(deck, player_hand, dealer_hand, score):
         dealer_total = calculate_total(dealer_hand)
         print(f"Dealer's total score is: {dealer_total}")
         print_blank_line()
-        
 
         # Player's turn
-        action = Prompt.ask("[dodger_blue2 bold]Hit[/] or [purple4 bold]Stand[/] ").strip().lower()
+        action = Prompt.ask(
+            "[dodger_blue2 bold]Hit[/] or [purple4 bold]Stand[/] ").strip().lower()
         if action == "hit":
             # Draw a new card and update player's hand and total
             new_card = deck.draw_card()
@@ -90,7 +97,10 @@ def turn(deck, player_hand, dealer_hand, score):
             # Check if player busts or gets blackjack
             if total > 21:
                 print_hand(player_hand, "dodger_blue2")
-                console.print(f"Bust! Your total is {total}, which is over 21. The dealer wins!", style="yellow1")
+                console.print(
+                    f"Bust! Your total is {
+                        total}, which is over 21. The dealer wins!",
+                    style="yellow1")
                 score.losses += 1
                 return
             elif total == 21:
@@ -114,7 +124,7 @@ def turn(deck, player_hand, dealer_hand, score):
                 # Check if dealer busts or gets blackjack
                 if dealer_total > 21:
                     console.print(
-                        f"Bust! {dealer_total} Dealer went over 21. You win!", style="green3")
+                        f"Dealer Bust! Dealer's total is {dealer_total}. They went over 21. You win!", style="green3")
                     score.wins += 1
                     return
                 elif dealer_total == 21:
@@ -162,6 +172,7 @@ def ask_play_again():
             console.print(
                 "Error: Invalid input. Please enter 'yes' or 'no'.",
                 style="red")
+
 
 def main():
     score = Score()

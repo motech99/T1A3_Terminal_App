@@ -19,6 +19,7 @@ fi
 if ! command_exists pip; then
   echo "Error: pip is not installed."
   echo "Please make sure pip is installed alongside Python."
+  echo "please head to the following to install the latest version of pip https://pypi.org/project/pip/  "
   exit 1
 fi
 
