@@ -182,7 +182,7 @@ Ensure Python and Pip are installed on your system before proceeding with the in
 
 The Blackjack application is compatible with Python on most systems. Below are the general system and hardware requirements:
 
-- **Operating System:** Windows 10 and above or MacOS or Linux
+- **Operating System:** Windows 10 and above (must be WSL) or MacOS or Linux
 
 - **Hardware:** Standard hardware requirements for running Python applications
 
